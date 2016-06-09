@@ -100,5 +100,17 @@ Problem: assign vars values st. max num. of cluase are satisfied.\\
 Thrm 1: For any set of \(m\) clauses, there is a thruth assign. st var satisfy \(\geq m/2\) clauses.\\
 Proof: Ran assign var to 0,1 indp. and equiprob. For \(1\leq i \leq ,\), \(Z_i=1\) iff \(i\)'th clause satisfied. With \(k\) literals, \(\Pr[\bar{Z}_i]=2^{-k}\), since all literals must zero. \(\Rightarrow \Pr(Z_i) = 1 - 2^{-k} \geq 1/2\) \(\Rightarrow \forall i.E[Z_i] \geq 1/2\). By linarity of expectation 
 \[E[\sum_{i=1}^m Z_i \geq m/2\]
-By probabilistic method 1. \(\exists\) assign. st \(\sum_{i=1}^m Z_i \geq m/2\).
+By probabilistic method 1. \(\exists\) assign. st \(\sum_{i=1}^m Z_i \geq m/2\).\\
+\(3/4\)-approx Max Sat.\\
+\(\alpha\)-ran-approx alg: for instance \(I\) \(m_{\cdot}(I)\) max num of satif. clauses \(E[M_A(I)]\) expected num of satisf. clause by \(\mathcal{A}\)
+\[ inf_{I\in \mathcal{I}} \frac{E[m_A(I)]}{m_{\cdot}(I)}=\alpha\]
+Thrm 1 is \(1-2^{-k}\)-approx alg if \(\forall i |C_i| \geq k\) \(\Rightarrow k\geq 2\) Thrm 1 \(\geq 3/4\)-approx alg.\\
+Issue \(k=1\) (\(1/2\) approx)\\
+Solution: New randomized rounding alg. Run both, return better.\\
+Formulate problem as Linear programming relaxation and use randomize rounding.\\
+Let \(z_j\in \{0,1\}\) be ind. sat. \(C_j\). For each var \(x_i\) let \(y_i\) be indp. st. \(y_i=1\) iff \(x_i=TRUE\). \(C_j^+\) be set pf indeces in \(C_j\) of vars in uncomplemented form and let \(C_j^-\) be indeces of complemented vars.\\
+Linear Program
+\[\max \sum_{j=1}^m z_j\\y_i,z_j \in \{0,1\}\]
+subject to
+\[\sum_{i\in C^+_j}y_i + \sum_{i \in C^-_j}(1-y_i) \geq z_j\]
 \end{document}
