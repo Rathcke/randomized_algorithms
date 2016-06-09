@@ -83,4 +83,22 @@
 \lhead{RA}
 \rhead{Week 6}
 \begin{document}
+\textbf{Concepts}: Probabilistic method, probability amplification, Locasz local lemma, conditional probabilities.\\
+Probabiltic Method:
+\begin{enumerate}
+\item Any ran. var. \(x\) assume \(\geq 1\) value \(\geq E[x]\) and assume \(\geq 1\) value \(\leq E[x]\).
+\item If \(o\) chosen at random from \(U\) satifies property \(p\) with non-zero probability, the there \(\exists o \in U\) with property \(p\).
+\end{enumerate}
+Application: Max Cut\\
+Thrm: For any grah \(G(V,E)\), \(|V|=n\), \(|E|=m\), there exist partition of \(V\) to \(A,B\) st.
+\[|\{(u,v)|u\in A \vee v\in B\}| \geq m/2\]
+Consider assign \(v\in V\) at random to \(A\) or \(B\) with \(1/2\) prob. \(\Rightarrow\) Prob \((u,v)=u\in A \vee v\in B = 1/2\). By linarity of expectation we expect \(m/2\) edges satisfying \(p=(u,v)=u\in A \vee v\in B\). \(\Rightarrow \exists p\) satisfying the thrm by Probabilistic Method 2.\\
+Not necessarily an efficient ran. alg., if prob. is miniscule.
+
+Max-Sat:\(m\) clauses in \(cnf\) over \(n\) vars.\\
+Problem: assign vars values st. max num. of cluase are satisfied.\\
+Thrm 1: For any set of \(m\) clauses, there is a thruth assign. st var satisfy \(\geq m/2\) clauses.\\
+Proof: Ran assign var to 0,1 indp. and equiprob. For \(1\leq i \leq ,\), \(Z_i=1\) iff \(i\)'th clause satisfied. With \(k\) literals, \(\Pr[\bar{Z}_i]=2^{-k}\), since all literals must zero. \(\Rightarrow \Pr(Z_i) = 1 - 2^{-k} \geq 1/2\) \(\Rightarrow \forall i.E[Z_i] \geq 1/2\). By linarity of expectation 
+\[E[\sum_{i=1}^m Z_i \geq m/2\]
+By probabilistic method 1. \(\exists\) assign. st \(\sum_{i=1}^m Z_i \geq m/2\).
 \end{document}
