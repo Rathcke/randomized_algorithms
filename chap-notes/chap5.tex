@@ -91,8 +91,8 @@ Probabiltic Method:
 \end{enumerate}
 Application: Max Cut\\
 Thrm: For any grah \(G(V,E)\), \(|V|=n\), \(|E|=m\), there exist partition of \(V\) to \(A,B\) st.
-\[|\{(u,v)|u\in A \vee v\in B\}| \geq m/2\]
-Consider assign \(v\in V\) at random to \(A\) or \(B\) with \(1/2\) prob. \(\Rightarrow\) Prob \((u,v)=u\in A \vee v\in B = 1/2\). By linarity of expectation we expect \(m/2\) edges satisfying \(p=(u,v)=u\in A \vee v\in B\). \(\Rightarrow \exists p\) satisfying the thrm by Probabilistic Method 2.\\
+\[|\{(u,v)|u\in A \wedge v\in B\}| \geq m/2\]
+Consider assign \(v\in V\) at random to \(A\) or \(B\) with \(1/2\) prob. \(\Rightarrow\) Prob \((u,v)=u\in A \wedge v\in B = 1/2\). By linarity of expectation we expect \(m/2\) edges satisfying \(p=(u,v)=u\in A \wedge v\in B\). \(\Rightarrow \exists p\) satisfying the thrm by Probabilistic Method 2.\\
 Not necessarily an efficient ran. alg., if prob. is miniscule.
 
 Max-Sat:\(m\) clauses in \(cnf\) over \(n\) vars.\\
@@ -113,4 +113,33 @@ Linear Program
 \[\max \sum_{j=1}^m z_j\\y_i,z_j \in \{0,1\}\]
 subject to
 \[\sum_{i\in C^+_j}y_i + \sum_{i \in C^-_j}(1-y_i) \geq z_j\]
+Relaxation: \(y_i, z_j \in [0,1\). Let \(\hat{y}_i\) be relaxed \(y_i\) when solved. \(\hat{z}_j\) be val obt. for \(z_j \Rightarrow \max \sum_j \hat{z}_j \geq \max \sum_j z_j\).\\
+Show \(E[Z] \geq (1-1/e)\sum_j \hat{z}_j\), then show best of two algs atleast \(3/4 \sum_j \hat{z}_j\).\\
+Let \(\Pr[y_i=1] = \hat{y}_i\) and 
+\[\beta_k = 1-(1-k^{-1})^k\]
+Note \(\beta_k \geq (1-1/e)\) for all \(k \in \mathcal{Z}^+\).\\
+Lemma 1: Let \(c_j\) be a clause with \(k\) literals. The prob that it is satis. by rand rounding is \(\geq \beta_k\hat{z}_j\)\\
+Proof: Focus on \(c_j\) and assume \(c_j^+=c_j\), assume \(x_1 \vee .. \vee x_k\).
+By constraint \(\hat{y}_1+..+\hat{y}_k \geq \hat{z}_j\). \(c_j\) remains unsatis if all \(y_i\) are rounded to zero.\\
+\(\Pr[c_j=FALSE]=\prod_{i=1}^k(1-\hat{y}_i)\) since ran rounding is indep.\\
+Remain to show
+\[ 1-\prod_{i=1}^k (1 - \hat{y}_i) \geq \beta_k \hat{z}_j\]
+LHS min when \(\hat{y}_i = \hat{z}_j/k \Rightarrow\)
+\[1-(1-x/k)^k \geq \beta_{k} x\]
+for \(x\in[0,1]\). Note \(g(x) = 1-(1-x/k)^k\) is concave, so it remains to show \(f(0)\geq g(0)\) and \(f(1) \geq g(1)\), for \(f(x)=\beta_k x\). Simple calc gives \(g(0)=f(0)=0\) and \(f(1)=g(1)=1-(1-1/k)^k\).\\
+Thrm 3: Given instance \(I\) of Max-Sat. \(E[satis clauses]\) by a Linear Prog with randomized rounding is (1-1/e) times the max num of number clauses satifyable on \(I\).\\
+Proof: Lemma 1 over all \(j\) with linearity of expectation. 
+Thrm 4: Let \(n_1\) be the expected of alg from thrm 1. Let \(n_2\) be expected of alg from Thrm 2 then 
+\[\max(n_1,n_2)\geq 3/4 \sum_j \hat{z}_j\]
+Proof: Suffice to show  \((n_1 + n_2)/2 \geq 3/4 \sum \hat{z}_j\).\\
+Denote by \(S^k\) the set of clause \(c\) where \(|c|=k\)
+\[n_1 = \sum_k \sum_{c_j \in S^k} (1-2^{-k} \geq \sum_k \sum_{c_j \in S^k} (1-2^{-k})\hat{z}_j\]
+By lemma 1
+\begin{align*}
+n_2 &\geq \sum_k \sum_{c_j \in S^k} \beta_k \hat{z}_j \Rightarrow\\
+\frac{n_1+n_2}{2} &\geq \sum_k \sum_{c_j \in S^k} \frac{(1-2^{-k})+\beta_k}{2}\hat{z}_j
+\end{align*}
+Since \( \forall k. (1-2^{-k}) + \beta_k \geq 3/2\) \(\Rightarrow\)
+\[\frac{n_1+n_2}{2} \geq \frac{3}{4} \sum_k\sum_{c_j \in S^k} \hat{z}_j = \frac{3}{4} \sum_j \hat{z}_j\]
+
 \end{document}
