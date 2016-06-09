@@ -141,5 +141,27 @@ n_2 &\geq \sum_k \sum_{c_j \in S^k} \beta_k \hat{z}_j \Rightarrow\\
 \end{align*}
 Since \( \forall k. (1-2^{-k}) + \beta_k \geq 3/2\) \(\Rightarrow\)
 \[\frac{n_1+n_2}{2} \geq \frac{3}{4} \sum_k\sum_{c_j \in S^k} \hat{z}_j = \frac{3}{4} \sum_j \hat{z}_j\]
-
+Expanding graph: number of any \(S\) is large than some constant times \(|S|\), ie \(|\tau(S)| \geq c|S|\). \(\tau(S)= \{w\in V| \exists v\in S,(v,w) \in E\}\).\\
+An \((n,d,\alpha,c\) OR-concentrator is a bipartite multigraph \(G(L,R,E)\) with indp. set \(|L|=|R|=n\) st.
+\begin{enumerate}
+\item \(\forall v\in L. deg(v)\leq d\)
+\item \(\forall S \subseteq L\) st. \(|S| \leq \alpha n\), there are \(|\tau(S)\leq R| \geq c|S|\)
+\end{enumerate}
+Thrm 5: \(\exists n_0\) st. \(\forall n > n_0\) there is an \((n,18,1/3,2)\) OR-concentrator.\\
+Proof: Consider bipartite rand graph on vert. in \(L\) and \(R\) st \(v\in L\) choose \(\tau(v)\) by sampling \(d\) vertices indep and unif from \(R\). \(\Rightarrow\) \(\tau(v) \leq d\) since multi edges removed.\\
+Let \(\mathcal{E}_s\) denote event that \(\tau(S) < c|S|\) neighbors in \(R\).\\
+Bound \(\Pr[\mathcal{E}_s]\) then \(\sum_{s\in S: |S| \leq \alpha n} \Pr[\mathcal{E}_s]\) to upperbound prob that rand. graph fails to be OR-conctrator \((n,d,\alpha,c)\) as specified.\\
+Fix \(S\subseteq L\) st \(|S|=s\) and \(T\subseteq R\) st \(|T|=cs\). there are \({n \choose s}\) ways of choosing \(S\), and \({n \choose cs}\) ways of choosing \(T\).\\
+\(\Pr[\tau(S) \subseteq T] = (cs/n)^{ds}\), since \(\forall v\in S.\tau(v) \leq d\) \(\Rightarrow \Pr[\mathcal{E}_S] \leq {n \choose s} {n \choose cs} (cs/n)^{ds}\)\\
+Use \({n \choose k} \leq (ne/k)^k\)
+\[\Pr[\mathcal{E}_s]\leq (ne/s)^s(ne/cs)^{cs}(cs/n)^{ds}  = \left[\right(\frac{s}{n}\left)^{d-c-1} e^{1+c} c^{d-c}\right]^s\]
+\(\alpha = 1/3\) and \(s \leq \alpha n\)\\
+\begin{align*}
+\Pr[\mathcal{E}_s] &\leq \left[\left(\frac{1}{3}\right)^{d-c-1} e^{1+d} c^{d-c}\right]^s\\
+                   &\leq \left[\left(\frac{1}{3}\right)^{d} (3e)^{1+d}\right]^s
+\end{align*}
+Using \(c=2 \wedge d=18\)
+\[\Pr[\mathcal{E}] \leq \left[\left(\frac{2}{3}\right)^{18}(3e)^3\right]^s\]
+let \(r=(2/3)^{18}(3e)^3\) and note \(r < 1/2\) \(Rightarrow\)
+\[\sum \Pr[\mathcal{E}_s] \leq \sum_{s\geq 1} r^s = \frac{r}{1-r} < 1\]
 \end{document}
