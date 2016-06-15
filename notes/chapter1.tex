@@ -99,9 +99,9 @@ $u \dashv v$ is the event that $index(u,v)\not = \infty$, ie. $index(u,v)=i$ for
 
 We let $C_{u,v}=[u\dashv v]$ then clearly, $E[C_{u,v}]=P[u\dashv v]\leq 1/(index(u,v)+1)$. The expected size of the autopartition $P_{\pi}$ is then $n$ plus expected intersections due to cuts. This is 
 \begin{align*}
-  n+E\left[\sum{u}\sum_{v}  C_{u,v} \right] &=    n+\sum{u}\sum_{v} P\left[ u \dashv v \right]\\
-                                            &\leq n+\sum{u}\sum_{v\not = u}\frac{1}{index(u,v)+1}\\
-                                            &\leq n+\sum{u}\sum_{i=1}^{n-1}\frac{2}{i+1}\\
+  n+E\left[\sum{u}\sum_{v}  C_{u,v} \right] &=    n+\sum_{u}\sum_{v} P\left[ u \dashv v \right]\\
+                                            &\leq n+\sum_{u}\sum_{v\not = u}\frac{1}{index(u,v)+1}\\
+                                            &\leq n+\sum_{u}\sum_{i=1}^{n-1}\frac{2}{i+1}\\
                                             &\leq n+2nH_n\\
                                             &=    \mathcal{O}(n\log n)
 \end{align*}
