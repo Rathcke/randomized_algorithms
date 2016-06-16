@@ -91,7 +91,6 @@ Problem: consider network of N nodes. \(v_i\) is the package from processor \(i\
 Consider case where all edges leaving vertex have queue, a route is a sequence of edges to take from source to destination. Oblivous algorithm, all routes are determined only by destination. 
 Thrm: For N nodes with out-degree d, there is deterministic oblivous routing algorithm there is a instance of permutation routing alg. requiring \(\Omega(\sqrt{N/d})\) steps.
 
-\section{Parallel Routing}
 Boolean hypercube: \(N=2^{dim}\) nodes. node \(i \in \{0,1\}^n\) adjacent to nodes with index obtained by single boolean flip. fx 010 adj. to \(011,000,110\). If j'th bit flipped out egde labeled j.\\
 2 phase ran alg:
 \begin{enumerate}
@@ -110,4 +109,6 @@ The expected length of \(\rho_j\) is \(n/2\). So the the expected total length i
 By Chernoff bound the probability that \(\sum_1^N H_{ij}\) exceeds 6n \(<\) \(2^{-6n}\). Summing over all packets we get probability \(2^{-5n}\) that none exceed 6n delay. Adding the route length we get with probability \(1-2^{-5n}\) every package reaches phase 1 dest. atmost 7n steps.\\
 For phase to we run same anlysis, only source is chosen at random. Hence we have that with for package to reach dest in either phase is \(2*2^{-5n} < 1/N\) for \(n>1\).\\
 With probaility at least \(1-(1/N)\) every packet reaches its destination in atmost 14n steps. 
+\section{Wiring problem}
+%TODO wiring problem
 \end{document}

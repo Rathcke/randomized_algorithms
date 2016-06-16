@@ -117,6 +117,7 @@ $$\sum_{p \in P} p \sum_{q \in Q} q C(A_q,I_p) \leq c.$$
 As all terms are non-negative we can switch order of summation giving us
 $$\sum_{q \in Q} q \sum_{p \in P} p C(A_q,I_p) \leq c.$$
 By the Pigeonhole principle there must exist an algorithm $A_q$ such that $\sum_{p \in P} p C(A_q,I_p) \leq c$, concluding the proof.
+
 \section{Yao on Game Tree}
 A tree $T_{2,k}$ is equivalent to a balanced binary tree of whose leaves are at distance 2k from the root, where nodes compute the NOR function.
 We want to analyse this tree of NORs with depth 2k using Yao's Minimax principle to prove a lower boundon the expected number of leaves evaluated by any randomized algorithm.
@@ -130,6 +131,7 @@ $$
 W(h) = W(h-1) + (1-p) * W(h-1)
 $$
 If we let $h$ be $\log_2(n)$ and solve we get $W(h) \geq n^{0.694}$
+
 \section{Randomness \& non-uniforimity}
 Boolean circuit with n input is a digraph where i) there are n input nodes with in-deg 0 and one output node with out-deg 0. ii) All nodes not input or output have one of the boolean functions AND,OR,NOT b(v) associated with it. iii) circuit compute function on inputs in intuitive manner. iv) size of circuit is \(|V|\).\\
 A random boolean circuit has additional inputs \(r_1,..,r_m\) that take on values in \(\{0,1\}\). Computes f on inputs if i) for inputs where f(x1,x2,..,xn)=0, output is 0. ii) for input where f(x1,x2,..,xn)=1, output is 1 with atleast probabilty 1/2.\\
