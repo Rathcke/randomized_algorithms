@@ -84,7 +84,28 @@
 \section{Chernoff Bound}
 Bounds the probability of deviating far from the mean. First we bound devaition above, then below. We consider moment generating function \(E[e^{tX}]\) rather than \(E[X]\). We work with poisson trials, indpendent \(p_i\) prob that\(X_i=1\).\\
 Thrm Chernoff above: Let \(X_{i\leq n}\) be indp poisson trials, st. \(\Pr[X_1 = 1] = p_i\). Then for \(\delta > 0\) 
-\[\Pr[X>(1+\delta)\mu] < \left[\frac{e^\delta}{(1+\delta)^{1+\delta}}\right]\]
+\[\Pr[X>(1+\delta)\mu] < \left[\frac{e^\delta}{(1+\delta)^{1+\delta}}\right]^\mu\]
+Proof: For any positive real \(t\)
+\[\Pr[X>(1+\delta)\mu]  = \Pr[exp(tX) > exp(t(1+\delta)\mu)\]
+By markov we have
+\[[\Pr[X>(1+\delta)\mu] < \frac{E[exp(tX)]}{exp(t(1+\delta)\mu)}\]
+Strict since \(p_i\) not zero or one. Observe
+\[\E[exp(tX)] = E[exp(t\sum_i^n X_i)] = E[\prod_i^n exp(tX_i)]\]
+By independence of \(X_i\) \(E[\prod exp(tX_i)] = \prod E[exp(tX_i)]\),so
+\[\Pr[X > (1+\delta)\mu] < \frac{\prod_i^n E[exp(tX_i)]}{exp(t(1+\delta)\mu)}\]
+\(\Pr[exp(tX_i)=exp(t)] = p_i\) and value 1 with probability \(1-p_i\) so
+\[\Pr[X>(1+\delta)\mu] < \frac{\prod_i^n[p_ie^t + 1 - p_i]}{exp(t(1+\delta)\mu)} = \frac{\prod_i^n [1+p_i(e^t-1)]}{exp(t(1+\delta)\mu)}\]
+Use \(1+x < e^x\) with \(x = p_i(e^t-1)\) 
+\begin{align}
+\Pr[X > (1+\delta)\mu] < \frac{\prod_i^n exp(p_i(e^t -1)]}{exp(t(1+\delta)\mu)}\\
+\Pr[X > (1+\delta)\mu] < \frac{ exp(\sum_i^n p_i(e^t -1)]}{exp(t(1+\delta)\mu)}\\
+\Pr[X > (1+\delta)\mu] < \frac{ exp((e^t -1)\mu)}{exp(t(1+\delta)\mu)}
+\end{align}
+Observe that all of the above has been proved for any positive real t; we are
+now free to choose a particular value for t that yields the best possible bound.
+For this, we differentiate the last expression with respect to t and set to zero;
+solving for t now yields t = ln(l + <5), which is positive for 5 > 0. Substituting
+this value for r, we obtain our theorem.
 
 \section{Parallel routing}
 Problem: consider network of N nodes. \(v_i\) is the package from processor \(i\), \(d(i)\) is destination. Only consider case when \(d(i)\) are all distinct, ie. permutation of \([N]\). How many steps required to route arbitrary permutation of \(d(1),..,d(N)\).
