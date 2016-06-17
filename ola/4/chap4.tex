@@ -110,5 +110,35 @@ By Chernoff bound the probability that \(\sum_1^N H_{ij}\) exceeds 6n \(<\) \(2^
 For phase to we run same anlysis, only source is chosen at random. Hence we have that with for package to reach dest in either phase is \(2*2^{-5n} < 1/N\) for \(n>1\).\\
 With probaility at least \(1-(1/N)\) every packet reaches its destination in atmost 14n steps. 
 \section{Wiring problem}
-%TODO wiring problem
+Problem: global wiring in gate-arryas.\\
+Gate-array: \(\sqrt{n}\times\sqrt{n}\) matrix with elements number \([n]+1\).\\\
+A net: is a set of gates that must be connect.\\
+Problem to solve: Given a set of nets. Consider only nets of size 2. We want to specify a physical path for each net.\\
+The boundary between two gates can accomidate atmost \(w\) wires crossing it. We want to solve global wiring st. no boundary has more \(w\) wires crossing it.\\
+We consider only one bend routes\\
+We cast problem to 0-1 linear program. For net i we have indicators \(x_{i0}=1\) iff net i goes horizontal first and \(x_{i1}=1\) iff we go verical first, starting from the leftmost gate.\\
+For each boundary in the gatearray
+\[T_{b0} = \{i | \emph{net} i \emph{passes through } b \emph{ if } x_{i0} = 1\}\]
+and 
+\[T_{b1} = \{i | \emph{net} i \emph{passes through } b \emph{ if } x_{i1} = 1\}\]
+Linear program:
+\[\min w \emph{ where }x_{i0},x_{i1} \in \{0,1\}\]
+subject to
+\begin{align}
+x_{i0} + x_{i1} &= 1\\
+\sum_{i \in T_{b0} x_{i0}} + \sum_{i \in T_{i1}} x_{i1} &\leq w
+\end{align}
+Problem is NP-hard. Do relaxation to \(x_{i0},x_{i1} \in [0,1]\) and use randomized rouding to 1 with probabilties equal to relaxed solution.\\
+\textbf{Thrm} Let \(\epsilon\) be a real number st. \(0<\epsilon<1\). Then with probability \(1-\epsilon\) the global wiring \(S\) produced by randomized rounding satisfies
+\[w_S \leq \hat{w}(1+\Delta^+(\hat{w},\epsilon/2n)) \leq w_0(1+\Delta^+(w_0,\epsilon/2n))\]
+Note \(w_0\) is optimal solutions (max \(w\) possible).\\
+Proof: Consider a boundary \(b\); since the solutoin of the linear program satisfy its constrains, we have
+\[\sum_{i \in T_{b0}} \bar{x}_{i0} + \sum_{i\in T_{b1}} \bar{x}_{i1}\]
+The number of wires passing thorugh \(b\) in the solution \(S\)  is
+\[w_s(b) = \sum_{i \in T_{b0}} \bar{x}_{i0} + \sum_{i\in T_{b1}} \bar{x}_{i1}\]
+ But \(\bar{x}_{i0}\) and \(\bar{x}_{i1}\) are Poisson trials with probabilty \(\hat{x}_{i0}\) and \(\hat{x}_{i1}\), respecively. Further, \(\bar{x}_{i0}\) and \(\bar{x}_{i1}\) are each indpendent of \(j\) for \(i\neq j\). Therefore \(w_S(b)\) is the sim of independent Poisson trials and by previous two equations
+ \[E[w_S(b)] = \sum_{i \in T_{i0}} E[\bar{x}_{i0}] + \sum_{i\in T_{b1}} E[\bar{x}_{i1}] = \sum_{i \in T_{i0}} \hat{x}_{i0} + \sum_{i\in T_{b1}} \hat{x}_{i1} \leq \hat{w}\]
+By definition of \(\Delta^+(\mu,\epsilon)\)
+\[\Pr[w_s(b) > \hat{w}(1+\Delta^+(\hat{w},\epsilon/2m)] \epsilon/2n\]
+
 \end{document}
