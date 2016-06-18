@@ -84,7 +84,7 @@
 \rhead{Week 6}
 \begin{document}
 \textbf{Concepts}: Probabilistic method, probability amplification, Locasz local lemma, conditional probabilities.\\
-Probabiltic Method:
+\section{Probabiltic Method}
 \begin{enumerate}
 \item Any ran. var. \(x\) assume \(\geq 1\) value \(\geq E[x]\) and assume \(\geq 1\) value \(\leq E[x]\).
 \item If \(o\) chosen at random from \(U\) satifies property \(p\) with non-zero probability, the there \(\exists o \in U\) with property \(p\).
@@ -164,4 +164,18 @@ Using \(c=2 \wedge d=18\)
 \[\Pr[\mathcal{E}] \leq \left[\left(\frac{2}{3}\right)^{18}(3e)^3\right]^s\]
 let \(r=(2/3)^{18}(3e)^3\) and note \(r < 1/2\) \(\Rightarrow\)
 \[\sum \Pr[\mathcal{E}_s] \leq \sum_{s\geq 1} r^s = \frac{r}{1-r} < 1\]
+\section{Parallel Routing}
+%TODO 15n random routing
+
+\section{Lovasz Local Lemma}
+
+\textbf{LLL}: Let \(G(V,E)\) be a dependency graph for events \(E_1,..,E_n\) in a probability space. Suppose there exists \(x_i \in [0,1]\) for \(1\leq i \leq n\) st.
+\[\Pr[E_i] \leq x_i \prod_{(i,j) \in E} (1-x_j)\]
+then
+\[\Pr[\cap_{i=1}^n \bar{E}_i] \geq \prod_{i=1}^n (1-x_i)\]
+\textbf{Corollary} Let \(E_1,..,E_n\) be events from a probability space. with \(\Pr[E_i] \leq p\) for all \(i\). If each event is mutually independent of all other events expept atmost \(d\) st. \(ep(d+1) \leq 1\) then 
+\[\Pr[\cap_{i=1}^n \bar{E}_i] > 0\]
+%TODO max sat application corollary of LLL.
+\section{Conditonal Probabilites}
+%TODO Conditional probabilities
 \end{document}
