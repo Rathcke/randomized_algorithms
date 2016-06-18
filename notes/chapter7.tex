@@ -45,17 +45,16 @@
 Most alg techs involve fingerprinting: Consider the problem of determining equality of elements $x$ and $y$ drawn from $U$. Verifying has deterministic complexity $ \geq \log|U|$. Pick then random mapping from $U$ into smaller univ $V$. There is then good chance that $x$ and $y$ are identical if their images also are. Can now be verified in $\log |V|$ time by comparing fingerprints.
 \subsection{Fingerprinting and Freivalds' Technique}
 \label{sub:Fingerprinting and Freivalds' Technique}
-Describe a technique for verifying matrix multiplication. Fastest deterministic is $O(2^{2.376})$, but is very complicated. Given an impl we want to verify correctness of it. So, given $n\times n$ matrices $A$, $B$ and $C$ over $\mathbb{F}$ we would like to know if $AB=C$.\\
-
+Describe a technique for verifying matrix multiplication. Fastest deterministic is $O(2^{2.376})$, but is very complicated. Given an impl we want to verify correctness of it. So, given $n\times n$ matrices $A$, $B$ and $C$ over $\mathbb{F}$ we would like to know if $AB=C$.\\\\
 \textbf{Freivalds' technique:} An $O(n^2)$ time randomized alg with bounded err prob. Starts by chosing rand vector $r\in\{0,1\}^n$ (elements chosen rand). We then compute $x=Br$, $y=Ax=ABr$ and $z=Cr$ in $O(n^2)$ time (vector mult). If $AB=C$ then $y=z$. We want to find prob that $y\not = z$ if $AB\not = C$.
-\paragraph{Thm 7.1:} Let $A$, $B$ and $C$ be $n\times n$ matrices over $ \mathbb{F}$ st $AB\not C$. Then for $r$ chosen random from $\{0,1\}^n$, $P[ABr=cr]\leq 1/2$.
-\paragraph{Proof:} Let $D=AB-C$. Then $D$ is not all zeros matrix. We want to bound prob that $Dr=0$. wlog, we can assume that first row in $D$, call this $d$, has a non-zero entry and all non-zero entries comes before the zero entries. Assume that first $k>0$ entries in $d$ are non-zero. Focus on $P[d^T r\not = 0]$. Since $Dr$ is exactly $d^Tr$, this gives a lower bound on prob that $y\not = z$. We have that $d^Tr=0$ iff.
+\paragraph{Thm 7.1:} Let $A$, $B$ and $C$ be $n\times n$ matrices over $ \mathbb{F}$ st $AB\not= C$. Then for $r$ chosen random from $\{0,1\}^n$, $P[ABr=Cr]\leq 1/2$.
+\paragraph{Proof:} Let $D=AB-C$. Then $D$ is not all zeros matrix. We want to bound prob that $Dr=0$. wlog, we can assume that first row in $D$, call this $d$, has a non-zero entry and all non-zero entries comes before the zero entries. Assume that first $k>0$ entries in $d$ are non-zero. Focus on $P[d^T r\not = 0]$. Since first row in $Dr$ is exactly $d^Tr$, this gives a lower bound on prob that $y\not = z$. We have that $d^Tr=0$ iff.
 $$
   r_1=\frac{-\sum^{k}_{i=2}d_ir_i }{d_1}
 $$
 ie that
 $$
-  \sum^{k}_{i=1} d_ir_i=r_1d_1+\sum^{k}_{i=2} = 0\Leftrightarrow r_1=\frac{-\sum^{k}_{i=2}d_ir_i }{d_1}
+  \sum^{k}_{i=1} d_ir_i=r_1d_1+\sum^{k}_{i=2} d_ir_i = 0\Leftrightarrow r_1=\frac{-\sum^{k}_{i=2}d_ir_i }{d_1}
 $$
 Assuming all other rand entries in $r$ are chosen before $r_1$. Then RHS is fixed for some val $v$. Since $r_1$ is uniformly distributed over set of size 2, prob that it equals $v$ cannot exceed $1/2$.\\
 
@@ -117,9 +116,8 @@ For any number $k$, let $\pi(k)$ be number of distinct primes less than $k$. Pri
 \paragraph{Lemma 7.4:} The number of dist prime divisors of any number less than $2^n$ is at most $n$
 \paragraph{Proof:} Each prime number is greater than $1$. If $N$ has more than $t$ distinct prime divisors, then $N\geq 2^t$.\\
 
-Choose threshold $\tau$ larger than $n=\log N$. Number of primes smaller than $\tau$ is $\pi(\tau)~ \tau/\ln \tau$. At most $n$ can be divisors of $c$ resulting in a fail. We pick random prime $p$ smaller than $\tau$ for $F_p$. Number of communication bits is $O(\log \tau)$. Choose $\tau=tn\log tn$ for large $t$. Then it follows that prob of error is:
+Choose threshold $\tau$ larger than $n=\log N$. Number of primes smaller than $\tau$ is $\pi(\tau)\texttildelow \tau/\ln \tau$. At most $n$ can be divisors of $c$ resulting in a fail. We pick random prime $p$ smaller than $\tau$ for $F_p$. Number of communication bits is $O(\log \tau)$. Choose $\tau=tn\log tn$ for large $t$. Then it follows that prob of error is:
 \paragraph{Thm 7.5:} $P[F_p(a)=F_p(b)|a\not = b]\leq \frac{n}{\pi(\tau)}=O\left( \frac{1}{t} \right)$
-/bin/bash: x: command not found
 \subsection{A Comparison of Fingerprinting Techniques}
 \label{sub:A Comparison of Fingerprinting Techniques}
 Focus on verifying equality of 2 strings $a=(a_1,\ldots,a_n)$ and $b=(b_1,\ldots,b_n)$ containing elements drawn from alphabeth $\sigma$ of size $k$. We can encode each distinct element from the set of numbers $\Gamma =\{0,\ldots,k-1\}$. View the strings as $A(z)=\sum^{n-1}_{i=0}a_iz^i $ and $B(z)=\sum^{n-1}_{i=0}a_ib^i $. Clearly strings are identical if polynomials are.
