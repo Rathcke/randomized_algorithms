@@ -181,7 +181,8 @@ then
 \[\Pr[\cap_{i=1}^n \bar{E}_i] \geq \prod_{i=1}^n (1-x_i)\]
 \textbf{Corollary} Let \(E_1,..,E_n\) be events from a probability space. with \(\Pr[E_i] \leq p\) for all \(i\). If each event is mutually independent of all other events expept atmost \(d\) st. \(ep(d+1) \leq 1\) then 
 \[\Pr[\cap_{i=1}^n \bar{E}_i] > 0\]
-%TODO max sat application corollary of LLL.
+Consider k-SAT (each clause has k literals) with m clauses, where each of the n variables occur as at most \(2^{k/50}\) literals.\\
+Consider assinging 0,1 to each variable equiprobabily, and let \(E_i\) be the event that clause \(i\) is not satisfied, so \(\Pr[E_i] = 2^{-k}\) which is independent of all but atmost \(k2^{k/50\) clauses. By above corollary there must be postive probabilty that all clauses are satisfied.
 \section{Conditonal Probabilites}
 Using set balancing problem: Given a \(n\times n\) matrix A with \(a_{ij} \in \{0,1\}\), find vector \(B\in \{-1,1\}^n\) st \(\min |\!|AB|\!|_{\infty} = \max \{|x_1|,..,|x_n|\}\).\\
 Concept: Consider random algorithm to  find a string of lenght n a binary tree of heigh n. The random string is path from root to leaf, where at each level we append the value of the node.\\
