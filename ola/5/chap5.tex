@@ -165,8 +165,14 @@ Using \(c=2 \wedge d=18\)
 let \(r=(2/3)^{18}(3e)^3\) and note \(r < 1/2\) \(\Rightarrow\)
 \[\sum \Pr[\mathcal{E}_s] \leq \sum_{s\geq 1} r^s = \frac{r}{1-r} < 1\]
 \section{Parallel Routing}
-%TODO 15n random routing
-
+\textbf{Thrm} Consider any randomized oblivous algorithm for permutation routing on the hypercube with \(N = 2^n\) nodes. If this algorithm uses \(k\) random bits then its expected runtime is \(\Omega(2^{-k} \sqrt{N/n}\).\\
+Proof: Since we use \(k\) random bits atleast one of deterministic alg., denote A, that solves oblivous routing is chosen with probabilty atleast \(2^{-k}\). \\
+We know there exists an permutation st. A uses \(\Omega(\sqrt{N/n})\) time.\\
+So we obtain expected runtime \(\Omega(2^{-k} \sqrt{N/n}\) for this ran. algoirthm.\\
+\textbf{Col}: Any randomized algorithm that solves oblivous routing on hypercube, must use \(\Omega(n)\) random bits to achive expected runtime \(O(n)\).\\
+\textbf{Thrm}: For every n, there exists a randomized oblivous scheme for permutation routing on a hypercube that uses 3n random bits and runs in expcted time at most 15n.\\
+Proof:
+%TODO write proof 5.10
 \section{Lovasz Local Lemma}
 
 \textbf{LLL}: Let \(G(V,E)\) be a dependency graph for events \(E_1,..,E_n\) in a probability space. Suppose there exists \(x_i \in [0,1]\) for \(1\leq i \leq n\) st.
@@ -180,7 +186,7 @@ then
 Using set balancing problem: Given a \(n\times n\) matrix A with \(a_{ij} \in \{0,1\}\), find vector \(B\in \{-1,1\}^n\) st \(\min |\!|AB|\!|_{\infty} = \max \{|x_1|,..,|x_n|\}\).\\
 Concept: Consider random algorithm to  find a string of lenght n a binary tree of heigh n. The random string is path from root to leaf, where at each level we append the value of the node.\\
 For balancing problem conider a good if vector \(v\) of label from the root leading to it satisfies \(|\!|Av|\!| \leq 4\sqrt{n\ln n}\). \\
-Consider bad event \(E_i\) if the inner product of the ith row of A with b exeeds \(4\sqrt{n\ln n}\). We know probabilty \(\Pr[E_i] \leq 2/n^2\), so \(\sum_i \Pr[E_i] \leq 2/n\). Let \(\Pr[E_i|a]\) be of bad event conditioned on alg being in node a and let \(\hat{P}[\sum_i \Pr[E_i | a]\) now \(P(a) \leq \hat{P}(a}\) for all a.
+Consider bad event \(E_i\) if the inner product of the ith row of A with b exeeds \(4\sqrt{n\ln n}\). We know probabilty \(\Pr[E_i] \leq 2/n^2\), so \(\sum_i \Pr[E_i] \leq 2/n\). Let \(\Pr[E_i|a]\) be of bad event conditioned on alg being in node a and let \(\hat{P}[\sum_i \Pr[E_i | a]\) now \(P(a) \leq \hat{P}(a)\) for all a.
 \textbf{Thrm}: The algorithm based on method of conditional probailities to determines a vector b st \(|\!| Ab|\!|_{\infty} \leq 4\sqrt{n \ln n}\) in polytime.\\
 Proof: Follows from the three properties of \(\hat{P}\).
 \begin{enumerate}
