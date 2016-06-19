@@ -86,9 +86,9 @@ Bounds the probability of deviating far from the mean. First we bound devaition 
 Thrm Chernoff above: Let \(X_{i\leq n}\) be indp poisson trials, st. \(\Pr[X_1 = 1] = p_i\). Then for \(\delta > 0\) 
 \[\Pr[X>(1+\delta)\mu] < \left[\frac{e^\delta}{(1+\delta)^{1+\delta}}\right]^\mu\]
 Proof: For any positive real \(t\)
-\[\Pr[X>(1+\delta)\mu]  = \Pr[exp(tX) > exp(t(1+\delta)\mu)\]
+\[\Pr[X>(1+\delta)\mu]  = \Pr[exp(tX) > exp(t(1+\delta)\mu)]\]
 By markov we have
-\[[\Pr[X>(1+\delta)\mu] < \frac{E[exp(tX)]}{exp(t(1+\delta)\mu)}\]
+\[\Pr[X>(1+\delta)\mu] < \frac{E[exp(tX)]}{exp(t(1+\delta)\mu)}\]
 Strict since \(p_i\) not zero or one. Observe
 \[\E[exp(tX)] = E[exp(t\sum_i^n X_i)] = E[\prod_i^n exp(tX_i)]\]
 By independence of \(X_i\) \(E[\prod exp(tX_i)] = \prod E[exp(tX_i)]\),so
@@ -101,16 +101,13 @@ Use \(1+x < e^x\) with \(x = p_i(e^t-1)\)
 \Pr[X > (1+\delta)\mu] < \frac{ exp(\sum_i^n p_i(e^t -1)]}{exp(t(1+\delta)\mu)}\\
 \Pr[X > (1+\delta)\mu] < \frac{ exp((e^t -1)\mu)}{exp(t(1+\delta)\mu)}
 \end{align}
-Observe that all of the above has been proved for any positive real t; we are
-now free to choose a particular value for t that yields the best possible bound.
-For this, we differentiate the last expression with respect to t and set to zero;
-solving for t now yields t = ln(l + <5), which is positive for 5 > 0. Substituting
-this value for r, we obtain our theorem.
+We differentiate the last expression with respect to t and set to zero; solving for t now yields \(t = \ln(1 + \delta)\), which is positive for \(\delta > 0\). Substituting
+this value for t.
 
 \section{Parallel routing}
 Problem: consider network of N nodes. \(v_i\) is the package from processor \(i\), \(d(i)\) is destination. Only consider case when \(d(i)\) are all distinct, ie. permutation of \([N]\). How many steps required to route arbitrary permutation of \(d(1),..,d(N)\).
-Consider case where all edges leaving vertex have queue, a route is a sequence of edges to take from source to destination. Oblivous algorithm, all routes are determined only by destination. 
-Thrm: For N nodes with out-degree d, there is deterministic oblivous routing algorithm there is a instance of permutation routing alg. requiring \(\Omega(\sqrt{N/d})\) steps.
+Consider case where all edges leaving vertex have queue, a route is a sequence of edges to take from source to destination. Oblivous algorithm, all routes are determined only by destination. \\
+\textbf{Thrm}: For N nodes with out-degree d, there is deterministic oblivous routing algorithm there is a instance of permutation routing alg. requiring \(\Omega(\sqrt{N/d})\) steps.
 
 Boolean hypercube: \(N=2^{dim}\) nodes. node \(i \in \{0,1\}^n\) adjacent to nodes with index obtained by single boolean flip. fx 010 adj. to \(011,000,110\). If j'th bit flipped out egde labeled j.\\
 2 phase ran alg:
@@ -121,7 +118,7 @@ Boolean hypercube: \(N=2^{dim}\) nodes. node \(i \in \{0,1\}^n\) adjacent to nod
 Route determined by bit-fixing strategy: send \(v_i\) at \(v_j\) along the edge most sig. bit of \(v_j - d(i)\). Note \(\sigma\) is not permutation, as all destination chosen indpendently. Use FIFO for queueing.\\
 Phase 1 analysis, \(\rho_i\) is phase one route for \(v_i\). \(|\rho_i| \leq n+delay\).\\
 \textbf{Lemma}: delay of \(v_i\) with route \(e_1,..,e_k\) is atmost \(|S|\). Where S is the set of packages which route pass through atleast one of \(e_1,..,e_k\).\\
-Proof: A package in S leaves \(\rho_i\) at time step step at which it traverses an edge in \(\rho_i\) for the last time. Lag of a package traversing \(e_j\) at time t is \(t-j\). Init lag of \(v_i=0\), lag of \(v_i\) as traverses \(e_k\) is delay. If lag of \(v_i\) reaches l+1 a package in S leaves \(\rho_i\) with l. We see this since there must be a package from S that traveses \(e_j\), otherwise \(v_i\) could just traverse \(e_j\). Our delay policy FIFO means even if that package continue to travel along \(\rho_i\) it will not delay \(v_i\) again.  Let t' be the last time at which a package in S leaves with lag l. So there exist package v traversing \(e_{j'}\) at time t' st \(t'-e_{j'} = l\). Since v follows \(e_{j'}\) there is some w in S that follows \(e_{j'}\) at time t'. w must leave \(\rho_i\) at t': if not, some package follows \(e_{j'+1}\) at time \(t'+1\) with lag l, and so t' is not maximal. We charge increase from l to l+1 to w, which will not delay \(v_i\) again since it leaves \(\rho_i\). Thus each member of \(S\) can each be charge atmost one delay, establishing the lemma.\\
+Proof: A package in S leaves \(\rho_i\) at time step step at which it traverses an edge in \(\rho_i\) for the last time. Lag of a package traversing \(e_j\) at time t is \(t-j\). Init lag of \(v_i=0\), lag of \(v_i\) as traverses \(e_k\) is delay. If lag of \(v_i\) reaches l+1 a package in S leaves \(\rho_i\) with l. We see this since there must be a package from S that traveses \(e_j\), otherwise \(v_i\) could just traverse \(e_j\). Our queue policy FIFO means even if that package continue to travel along \(\rho_i\) it will not delay \(v_i\) again.  Let t' be the last time at which a package in S leaves with lag l. So there exist package v traversing \(e_{j'}\) at time t' st \(t'-e_{j'} = l\). Since v follows \(e_{j'}\) there is some w in S that follows \(e_{j'}\) at time t'. w must leave \(\rho_i\) at t': if not, some package follows \(e_{j'+1}\) at time \(t'+1\) with lag l, and so t' is not maximal. We charge increase from l to l+1 to w, which will not delay \(v_i\) again since it leaves \(\rho_i\). Thus each member of \(S\) can each be charge atmost one delay, establishing the lemma.\\
 Let \(H_{ij}=1\) iff \(\rho_i\) and \(\rho_j\) share atleast one edge. Delay \(v_i\) is at most \(\sum_1^N H_{ij}\). Since routes are chosen randomly \(H_{ij}\) are poisson trial for \(i\neq j\). Hence to bound delay using Chernoff, we can bound sum over \(H_{ij}\).\\
 Consider edge \(e\) in the hypercube, let \(T(e)\) be the number of routes that traverse \(e\). Fix \(\rho_i\) with \(|\rho_i| = k \leq n\), then
 \[\sum_1^N H_{ij} \leq \sum_1^k T(e_l) \Rightarrow E[\sum_1^N H_{ij}] \leq \sum_1^k E[T(e_l)]\]

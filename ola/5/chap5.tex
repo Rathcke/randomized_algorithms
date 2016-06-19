@@ -177,5 +177,16 @@ then
 \[\Pr[\cap_{i=1}^n \bar{E}_i] > 0\]
 %TODO max sat application corollary of LLL.
 \section{Conditonal Probabilites}
-%TODO Conditional probabilities
+Using set balancing problem: Given a \(n\times n\) matrix A with \(a_{ij} \in \{0,1\}\), find vector \(B\in \{-1,1\}^n\) st \(\min |\!|AB|\!|_{\infty} = \max \{|x_1|,..,|x_n|\}\).\\
+Concept: Consider random algorithm to  find a string of lenght n a binary tree of heigh n. The random string is path from root to leaf, where at each level we append the value of the node.\\
+For balancing problem conider a good if vector \(v\) of label from the root leading to it satisfies \(|\!|Av|\!| \leq 4\sqrt{n\ln n}\). \\
+Consider bad event \(E_i\) if the inner product of the ith row of A with b exeeds \(4\sqrt{n\ln n}\). We know probabilty \(\Pr[E_i] \leq 2/n^2\), so \(\sum_i \Pr[E_i] \leq 2/n\). Let \(\Pr[E_i|a]\) be of bad event conditioned on alg being in node a and let \(\hat{P}[\sum_i \Pr[E_i | a]\) now \(P(a) \leq \hat{P}(a}\) for all a.
+\textbf{Thrm}: The algorithm based on method of conditional probailities to determines a vector b st \(|\!| Ab|\!|_{\infty} \leq 4\sqrt{n \ln n}\) in polytime.\\
+Proof: Follows from the three properties of \(\hat{P}\).
+\begin{enumerate}
+\item \(\hat{P}(r) < 1\)
+\item For any node a with children b,c
+\[\hat{P}(\min (b,c)) \leq \hat{P}(a)\]
+\item For any node a, we can compute \(\hat{P}(a)\) in polynomial time.
+\end{enumerate}
 \end{document}
