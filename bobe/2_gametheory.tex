@@ -129,12 +129,12 @@ $$
 $$
 ie. the expected running time of the optimal deterministic algorithmen for an arbitrarily chosin input distribution $p$ ias a lower bound on the expected running time of the optimal Las Vegas randomized algorithm for the problem.
 \subsection{Proof}
-We define $q \in Q$ as all the input probabilities, and $p\in P$ as all the algorithm probabilities, $A_q$ is the algorithm corresponding to probability $q$ and $I_p$ as the input corresponding to probability $p$.\\
-We let $c = \max_{I\in\I} \E[C(A,I)]$. For every input $I$, we have $\sum_{q \in Q} q C(A_q,I) \leq c$. Therefore we have
-$$\sum_{p \in P} p \sum_{q \in Q} q C(A_q,I_p) \leq c.$$
+We define $q \in Q$ as all the input probabilities, and $p\in P$ as all the algorithm probability distributions, $A_q$ is the algorithm chosen according to the probability distribution $q$ and $I_p$ as the input according to the probability distribution $p$.\\
+We let $c = \max_{I\in\I} \E[C(I,A_q)]$. For every input $I$, we have $\sum_{q \in Q} q C(I,A_q) \leq c$. Therefore we have
+$$\sum_{p \in P} p \sum_{q \in Q} q C(I_p,A_q) \leq c.$$
 As all terms are non-negative we can switch order of summation giving us
-$$\sum_{q \in Q} q \sum_{p \in P} p C(A_q,I_p) \leq c.$$
-By the Pigeonhole principle there must exist an algorithm $A_q$ such that $\sum_{p \in P} p C(A_q,I_p) \leq c$, concluding the proof.
+$$\sum_{q \in Q} q \sum_{p \in P} p C(I_p,A_q) \leq c.$$
+By the Pigeonhole principle there must exist an algorithm $A_q$ such that $\sum_{p \in P} p C(I_p,A_q) \leq c$, concluding the proof.
 \section{Yao on Game Tree}
 A tree $T_{2,k}$ is equivalent to a balanced binary tree of whose leaves are at distance 2k from the root, where nodes compute the NOR function.
 We want to analyse this tree of NORs with depth 2k using Yao's Minimax principle to prove a lower boundon the expected number of leaves evaluated by any randomized algorithm.
