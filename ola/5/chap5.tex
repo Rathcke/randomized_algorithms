@@ -95,9 +95,10 @@ Thrm: For any grah \(G(V,E)\), \(|V|=n\), \(|E|=m\), there exist partition of \(
 Consider assign \(v\in V\) at random to \(A\) or \(B\) with \(1/2\) prob. \(\Rightarrow\) Prob \((u,v)=u\in A \wedge v\in B = 1/2\). By linarity of expectation we expect \(m/2\) edges satisfying \(p=(u,v)=u\in A \wedge v\in B\). \(\Rightarrow \exists p\) satisfying the thrm by Probabilistic Method 2.\\
 Not necessarily an efficient ran. alg., if prob. is miniscule.
 
+\section{Max-Sat}
 Max-Sat:\(m\) clauses in \(cnf\) over \(n\) vars.\\
 Problem: assign vars values st. max num. of cluase are satisfied.\\
-Thrm 1: For any set of \(m\) clauses, there is a thruth assign. st var satisfy \(\geq m/2\) clauses.\\
+\textbf{Thrm}: For any set of \(m\) clauses, there is a thruth assign. st var satisfy \(\geq m/2\) clauses.\\
 Proof: Ran assign var to 0,1 indp. and equiprob. For \(1\leq i \leq ,\), \(Z_i=1\) iff \(i\)'th clause satisfied. With \(k\) literals, \(\Pr[\bar{Z}_i]=2^{-k}\), since all literals must zero. \(\Rightarrow \Pr(Z_i) = 1 - 2^{-k} \geq 1/2\) \(\Rightarrow \forall i.E[Z_i] \geq 1/2\). By linarity of expectation 
 \[E[\sum_{i=1}^m Z_i \geq m/2\]
 By probabilistic method 1. \(\exists\) assign. st \(\sum_{i=1}^m Z_i \geq m/2\).\\
@@ -118,7 +119,7 @@ Show \(E[Z] \geq (1-1/e)\sum_j \hat{z}_j\), then show best of two algs atleast \
 Let \(\Pr[y_i=1] = \hat{y}_i\) and 
 \[\beta_k = 1-(1-k^{-1})^k\]
 Note \(\beta_k \geq (1-1/e)\) for all \(k \in \mathcal{Z}^+\).\\
-Lemma 1: Let \(c_j\) be a clause with \(k\) literals. The prob that it is satis. by rand rounding is \(\geq \beta_k\hat{z}_j\)\\
+\textbf{Lemma 1}: Let \(c_j\) be a clause with \(k\) literals. The prob that it is satis. by rand rounding is \(\geq \beta_k\hat{z}_j\)\\
 Proof: Focus on \(c_j\) and assume \(c_j^+=c_j\), assume \(x_1 \vee .. \vee x_k\).
 By constraint \(\hat{y}_1+..+\hat{y}_k \geq \hat{z}_j\). \(c_j\) remains unsatis if all \(y_i\) are rounded to zero.\\
 \(\Pr[c_j=FALSE]=\prod_{i=1}^k(1-\hat{y}_i)\) since ran rounding is indep.\\
@@ -127,9 +128,9 @@ Remain to show
 LHS min when \(\hat{y}_i = \hat{z}_j/k \Rightarrow\)
 \[1-(1-x/k)^k \geq \beta_{k} x\]
 for \(x\in[0,1]\). Note \(g(x) = 1-(1-x/k)^k\) is concave, so it remains to show \(f(0)\geq g(0)\) and \(f(1) \geq g(1)\), for \(f(x)=\beta_k x\). Simple calc gives \(g(0)=f(0)=0\) and \(f(1)=g(1)=1-(1-1/k)^k\).\\
-Thrm 3: Given instance \(I\) of Max-Sat. \(E[satis clauses]\) by a Linear Prog with randomized rounding is (1-1/e) times the max num of number clauses satifyable on \(I\).\\
-Proof: Lemma 1 over all \(j\) with linearity of expectation. 
-Thrm 4: Let \(n_1\) be the expected of alg from thrm 1. Let \(n_2\) be expected of alg from Thrm 2 then 
+\textbf{Thrm 3}: Given instance \(I\) of Max-Sat. \(E[satis clauses]\) by a Linear Prog with randomized rounding is (1-1/e) times the max num of number clauses satifyable on \(I\).\\
+Proof: Lemma 1 over all \(j\) with linearity of expectation.\\
+\textbf{Thrm 4}: Let \(n_1\) be the expected of alg from thrm 1. Let \(n_2\) be expected of alg from Thrm 2 then 
 \[\max(n_1,n_2)\geq 3/4 \sum_j \hat{z}_j\]
 Proof: Suffice to show  \((n_1 + n_2)/2 \geq 3/4 \sum \hat{z}_j\).\\
 Denote by \(S^k\) the set of clause \(c\) where \(|c|=k\)
@@ -147,7 +148,7 @@ An \((n,d,\alpha,c\) OR-concentrator is a bipartite multigraph \(G(L,R,E)\) with
 \item \(\forall v\in L. deg(v)\leq d\)
 \item \(\forall S \subseteq L\) st. \(|S| \leq \alpha n\), there are \(|\tau(S)\leq R| \geq c|S|\)
 \end{enumerate}
-Thrm 5: \(\exists n_0\) st. \(\forall n > n_0\) there is an \((n,18,1/3,2)\) OR-concentrator.\\
+\textbf{Thrm 5}: \(\exists n_0\) st. \(\forall n > n_0\) there is an \((n,18,1/3,2)\) OR-concentrator.\\
 Proof: Consider bipartite rand graph on vert. in \(L\) and \(R\) st \(v\in L\) choose \(\tau(v)\) by sampling \(d\) vertices indep and unif from \(R\). \(\Rightarrow\) \(\tau(v) \leq d\) since multi edges removed.\\
 Let \(\mathcal{E}_s\) denote event that \(\tau(S) < c|S|\) neighbors in \(R\).\\
 Bound \(\Pr[\mathcal{E}_s]\) then \(\sum_{s\in S: |S| \leq \alpha n} \Pr[\mathcal{E}_s]\) to upperbound prob that rand. graph fails to be OR-conctrator \((n,d,\alpha,c)\) as specified.\\
@@ -182,7 +183,7 @@ then
 \textbf{Corollary} Let \(E_1,..,E_n\) be events from a probability space. with \(\Pr[E_i] \leq p\) for all \(i\). If each event is mutually independent of all other events expept atmost \(d\) st. \(ep(d+1) \leq 1\) then 
 \[\Pr[\cap_{i=1}^n \bar{E}_i] > 0\]
 Consider k-SAT (each clause has k literals) with m clauses, where each of the n variables occur as at most \(2^{k/50}\) literals.\\
-Consider assinging 0,1 to each variable equiprobabily, and let \(E_i\) be the event that clause \(i\) is not satisfied, so \(\Pr[E_i] = 2^{-k}\) which is independent of all but atmost \(k2^{k/50\) clauses. By above corollary there must be postive probabilty that all clauses are satisfied.
+Consider assinging 0,1 to each variable equiprobabily, and let \(E_i\) be the event that clause \(i\) is not satisfied, so \(\Pr[E_i] = 2^{-k}\) which is independent of all but atmost \(k2^{k/50}\) clauses. By above corollary there must be postive probabilty that all clauses are satisfied.
 \section{Conditonal Probabilites}
 Using set balancing problem: Given a \(n\times n\) matrix A with \(a_{ij} \in \{0,1\}\), find vector \(B\in \{-1,1\}^n\) st \(\min |\!|AB|\!|_{\infty} = \max \{|x_1|,..,|x_n|\}\).\\
 Concept: Consider random algorithm to  find a string of lenght n a binary tree of heigh n. The random string is path from root to leaf, where at each level we append the value of the node.\\
