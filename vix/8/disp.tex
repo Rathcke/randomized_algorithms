@@ -76,7 +76,26 @@
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 \begin{document}
-i
+\subsection*{Fundamental Data Structure Problem}
+The fundamental data structuring problem is the problem of storing $S_1,\ldots,S_n$ items such that we can efficiently support different kinds of queries and operations. These operations/queries are \textsc{Make-Set}, \textsc{Insert}, \textsc{Delete}, \textsc{Find}, \textsc{Join}, \textsc{Paste} and \textsc{Split}.
+
+\subsection*{Random Treaps}
+Random Treaps is a datastructure that has a set of keys like a normal binary search tree, but each node also has a priority associated with it. This priority is given at random. The treap satisfies that it is a binary search tree with respect to keys and also a heap with respect to the priorities. Theorem 8.1 states there is a unique treap for each set of key-priority values. \\
+The operations \textsc{Make-Set} and \textsc{Find} are implemented normally. yadda yadda for the others. \\
+\\
+\textbf{Proof of Lemma 8.6:} We will show that $E[depth(x_k)]=H_k+H_{n-k+1}+1$. We define a variable $X_{ik}$ if $x_i$ is an ancestor of $x_k$. If we look at the case when $i<k$, then:
+\begin{align*}
+  \mathbb{E}\left[ \sum_{i<k} X_{ik} \right] &= \sum_{i<k} p_i \comment{where $p_i=\max\{p_i,\ldots, p_k\}$} \\
+                                             &= \sum_{i<k} \frac{1}{k-i+1} \comment{Only ancestor if it was the largest key at its insertion}\\
+                                     &= \sum_{i=2}^k \frac{1}{i} \\
+                                     &= H_k-1
+\end{align*}
+The same analysis follows for $i>k$, yielding an expected depth of $(H_k-1)+(H_{n-k+1}-1)+1$ ($+1$ from itself) which gives us $\mathcal{O}(\lg n)$ depth.\\
+\\
+\textbf{Proof of Lemma 8.7:} Meh?
+
+\subsection*{Hashing with $O(1)$ search time}
+
 
 
 \end{document}
